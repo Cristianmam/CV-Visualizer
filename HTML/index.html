@@ -4,12 +4,90 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Visualizador</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--FontAwesome-->
+    <script src="https://kit.fontawesome.com/6388e83cce.js" crossorigin="anonymous"></script>
 
+    <!--Dependencies for Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!--Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="../CSS/CVStyles.css">
 </head>
 <body>
     <script src="../JavaScript/CVJS.js"></script>
     
+
+    <header class="jumbotron text-left row person-header" style="margin-bottom:0">
+        <div class="col-sm-2 flex center-all">
+            <img id="person-picture" src="" alt="Mi foto en este curriculum">
+        </div>
+        <div id="person-name-holder" class="col-sm-5">
+            <h1 id="person-name">-</h1>
+        </div>
+        <div class="col-sm-5 text-right">
+            <div class="row center-vertical"><p id="person-location" class="personal-data">-</p><i class="fa-solid fa-location-dot"></i></div>
+            <div class="row center-vertical"><p id="person-email" class="personal-data">-</p>  <i class="fa-solid fa-envelope"></i></div>
+            <div class="row center-vertical"><p id="person-cell" class="personal-data">-</p>  <i class="fa-solid fa-mobile-screen-button"></i></i></div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <p id="sections-text" class="navbar-brand">Secciones</p>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sobre mi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Educación</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Experiencia</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Conocimientos</a>
+                </li>       
+            </ul>
+        </div>        
+    </nav>
+
+    <section id="main-section" class="container">
+
+    </section>
+
+    <footer>
+
+    </footer>
+
+
+    <template id="about-template">
+        <div class="section-body">
+            <h2>Sobre mi</h2>
+            <p id="about-paragraph">-</p>
+        </div>
+    </template>
+
+    <template>
+        
+    </template>
+
+    <template>
+        
+    </template>
+
+    <template>
+        
+    </template>
 </body>
 </html>

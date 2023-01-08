@@ -1,0 +1,43 @@
+.center-vertical{
+    display: flex; 
+    align-items: center; 
+    justify-content: right; 
+}
+
+.center-all{
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+#person-picture{
+    height: 12rem;
+    width: auto; 
+}
+
+#person-name-holder{
+    display: flex;
+    justify-content: left;
+}
+
+.personal-data{
+    margin-right: 5px;
+    margin-bottom: 0px;
+}
+
+#sections-text{
+    margin: 0px;
+    padding: 5px;
+}
+
+.person-header{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 480px) {
+    #person-name-holder{
+        display: flex;
+        justify-content: center;
+    }
+}

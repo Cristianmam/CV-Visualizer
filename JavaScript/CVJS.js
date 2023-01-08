@@ -15,15 +15,28 @@ async function _preparePage(){
     let randomlanguages = _generateLanguages();
     let randomeducations = _generateEducations();
 
+    //Create a person to show in the main page
     let finishedPerson = _assemblePerson(rando.results[0], loreAbout, randomSkills, randomexperiences, randomlanguages, randomeducations);
-    console.log(finishedPerson);
     
     //Pass the finished object to the HTML
+    //Header
+    document.getElementById("person-picture").setAttribute("src", finishedPerson.picture.large);
+    document.getElementById("person-name").innerHTML= finishedPerson.name.first + " " + finishedPerson.name.last;
+    document.getElementById("person-location").innerHTML= finishedPerson.location.city + ", " + finishedPerson.location.state + ", " + finishedPerson.location.country;
+    document.getElementById("person-email").innerHTML= finishedPerson.contact.email;
+    document.getElementById("person-cell").innerHTML= finishedPerson.contact.phone;
+
+    let mainSection = document.getElementById("main-section");
+    let aboutTemplate = document.getElementById("about-template");
+
+    let clone = aboutTemplate.content.cloneNode(true);
+    mainSection.appendChild(clone);
+    //mainSection.style.display = 'none';
 }
 
 
 async function _generateRandomPerson(){
-    var _randomPersonData;
+    var randomPersonData;
 
     await $.ajax({
         url: 'https://randomuser.me/api/',
