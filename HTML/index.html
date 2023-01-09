@@ -7,13 +7,14 @@
     <title>Visualizador</title>
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!--FontAwesome-->
-    <script src="https://kit.fontawesome.com/6388e83cce.js" crossorigin="anonymous"></script>
-
+    
     <!--Dependencies for Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!--FontAwesome-->
+    <script src="https://kit.fontawesome.com/6388e83cce.js" crossorigin="anonymous"></script>
 
     <!--Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -40,23 +41,23 @@
     </header>
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <p id="sections-text" class="navbar-brand">Secciones</p>
+        <p id="nav-sections-text" class="navbar-brand">Secciones</p>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sobre mi</a>
+                    <a id="about-link" role="button" href="#" class="nav-link">Sobre mi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Educación</a>
+                    <a id="education-link" role="button" href="#" class="nav-link">Educación</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Experiencia</a>
+                    <a id="experience-link" role="button" href="#" class="nav-link">Experiencia</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Conocimientos</a>
+                    <a id="skills-link" role="button" href="#" class="nav-link">Conocimientos</a>
                 </li>       
             </ul>
         </div>        
@@ -64,30 +65,60 @@
 
     <section id="main-section" class="container">
 
-    </section>
-
-    <footer>
-
-    </footer>
-
-
-    <template id="about-template">
-        <div class="section-body">
+        <div id="about-section" class="start-hidden">
             <h2>Sobre mi</h2>
             <p id="about-paragraph">-</p>
         </div>
+
+        <div id="education-section" class="start-hidden">
+            <h2>Educación y titulos</h2>
+        </div>
+
+        <div id="experience-section" class="start-hidden">
+            <h2>Experiencia</h2>
+        </div>
+
+        <div id="skills-section" class="start-hidden">
+            <h2>Conocimientos</h2>
+            <ul id="skill-list">
+
+            </ul>
+            <h2>Idiomas</h2>
+            <ul id="language-list">
+
+            </ul>
+        </div>
+
+    </section>
+
+    <footer class="main-footer">
+        <p class="footer-text">Hecho por: Cristian Mambriani</p>
+        <a class="footer-link-text" href="https://github.com/cristianmam" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="footer-link-text" href="https://github.com/Cristianmam/CV-Visualizer" target="_blank" rel="noopener noreferrer">GitHub de esta pagina</a>
+    </footer>
+
+    <template id="education-template">
+        <div class="education-set standard-set">
+            <div class="education-header standard-header">
+                <p class="education-title standard-title"><b></b></p><p class="education-duration standard-duration"></p>
+            </div>
+            <p class="education-institution standard-subtitle"></p>
+        </div>
     </template>
 
-    <template>
-        
+    <template id="experience-template">
+        <div class="experience-set standard-set">
+            <div class="experience-header standard-header">
+                <p class="experience-title standard-title"><b></b></p><p class="experience-duration standard-duration"></p>
+            </div>
+            <p class="experience-company standard-subtitle"></p>
+            <p class="experience-description standard-description"></p>
+        </div>
     </template>
 
-    <template>
-        
+    <template id="skill-template">
+        <li><div class="composite-list-item"><p class="skill-name"></p><p>: </p><p class="skill-level"></p></div></li>
     </template>
 
-    <template>
-        
-    </template>
 </body>
 </html>

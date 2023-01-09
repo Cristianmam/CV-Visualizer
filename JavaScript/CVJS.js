@@ -1,6 +1,8 @@
 _preparePage();
 
 
+
+
 async function _preparePage(){
     //Collect all the data from the different APIs
     let rando;
@@ -19,21 +21,109 @@ async function _preparePage(){
     let finishedPerson = _assemblePerson(rando.results[0], loreAbout, randomSkills, randomexperiences, randomlanguages, randomeducations);
     
     //Pass the finished object to the HTML
-    //Header
-    document.getElementById("person-picture").setAttribute("src", finishedPerson.picture.large);
-    document.getElementById("person-name").innerHTML= finishedPerson.name.first + " " + finishedPerson.name.last;
-    document.getElementById("person-location").innerHTML= finishedPerson.location.city + ", " + finishedPerson.location.state + ", " + finishedPerson.location.country;
-    document.getElementById("person-email").innerHTML= finishedPerson.contact.email;
-    document.getElementById("person-cell").innerHTML= finishedPerson.contact.phone;
-
-    let mainSection = document.getElementById("main-section");
-    let aboutTemplate = document.getElementById("about-template");
-
-    let clone = aboutTemplate.content.cloneNode(true);
-    mainSection.appendChild(clone);
-    //mainSection.style.display = 'none';
+    _displayPerson(finishedPerson);
 }
 
+function _displayPerson(person){
+    //Header
+    document.getElementById("person-picture").setAttribute("src", person.picture.large);
+    document.getElementById("person-name").innerHTML= person.name.first + " " + person.name.last;
+    document.getElementById("person-location").innerHTML= person.location.city + ", " + person.location.state + ", " + person.location.country;
+    document.getElementById("person-email").innerHTML= person.contact.email;
+    document.getElementById("person-cell").innerHTML= person.contact.phone;
+
+
+    //Main Section
+    //Prepare data
+    //About
+    document.getElementById("about-paragraph").innerHTML = person.about;
+
+    //Education
+    let template = document.getElementById("education-template");
+    let target = document.getElementById("education-section");
+    person.education.forEach(function(education) {
+
+        clone = template.content.cloneNode(true);
+        title = clone.querySelector(".education-title");
+        institution = clone.querySelector(".education-institution");
+        duration = clone.querySelector(".education-duration");
+
+        title.textContent = education.education;
+        institution.textContent = education.institution;
+        duration.textContent = education.from + " - " + education.to;
+
+        target.appendChild(clone);
+
+    });
+    //Experience
+    template = document.getElementById("experience-template");
+    target = document.getElementById("experience-section");
+    person.experience.forEach(function(experience) {
+
+        clone = template.content.cloneNode(true);
+        title = clone.querySelector(".experience-title");
+        company = clone.querySelector(".experience-company");
+        duration = clone.querySelector(".experience-duration");
+        description = clone.querySelector(".experience-description");
+
+        title.textContent = experience.title;
+        company.textContent = experience.company;
+        duration.textContent = experience.from + " - " + experience.to;
+        description.textContent = experience.description;
+        
+
+        target.appendChild(clone);
+    });
+
+    //Skills
+    template = document.getElementById("skill-template");
+    target = document.getElementById("skill-list");
+    person.skills.forEach(function(skill) {
+
+        clone = template.content.cloneNode(true);
+        _skill = clone.querySelector(".skill-name");
+        level = clone.querySelector(".skill-level");
+
+        _skill.textContent = skill.skill;
+        level.textContent = skill.level;
+        
+
+        target.appendChild(clone);
+    });
+
+    target = document.getElementById("language-list");
+    person.languages.forEach(function(language) {
+
+        clone = template.content.cloneNode(true);
+        _language = clone.querySelector(".skill-name");
+        level = clone.querySelector(".skill-level");
+
+        _language.textContent = language.language;
+        level.textContent = language.level;
+        
+
+        target.appendChild(clone);
+    });
+
+    //Show the about section
+    document.getElementById("about-section").style.display = 'block';
+
+    //Bind the navbar events
+    document.getElementById("about-link").addEventListener("click",function(){
+        _showSection("about-section");
+    });
+    document.getElementById("education-link").addEventListener("click",function(){
+        _showSection("education-section");
+    });
+    document.getElementById("experience-link").addEventListener("click",function(){
+        _showSection("experience-section");
+    });
+    document.getElementById("skills-link").addEventListener("click",function(){
+        _showSection("skills-section");
+    });
+    
+    
+}
 
 async function _generateRandomPerson(){
     var randomPersonData;
@@ -70,6 +160,7 @@ async function _generateExperience(gender){
     let experiences = [];
     
     let paras = await _generateRandomParagraphs(total);
+    let possibleCompanies = ["Globant", "INFOSIS", "IBM", "Microsoft", "Apple"];
     let possibleExperiences = ["Asistente","Pasante"];
 
     if(gender == "male"){
@@ -79,11 +170,15 @@ async function _generateExperience(gender){
     }
 
     possibleExperiences = possibleExperiences.sort((a,b) => 0.5 - Math.random());
+    possibleCompanies = possibleCompanies.sort((a,b) => 0.5 - Math.random());
 
     for(let i = 0; i < total; i++){
         experiences.push({
-            experience: possibleExperiences.pop(),
-            description: paras[i]
+            title: possibleExperiences.pop(),
+            company: possibleCompanies.pop(),
+            description: paras[i],
+            from: "mm/yyyy",
+            to: "mm/yyyy"
         });
     }
 
@@ -119,7 +214,9 @@ function _generateEducations(){
     for (let i = 0; i < total; i++){
         educations.push({
             education: possibleEducations.pop(),
-            institution: possibleInstitutions.pop()
+            institution: possibleInstitutions.pop(),
+            from: "mm/yyyy",
+            to: "mm/yyyy"
         });
     }
     return educations;
@@ -172,3 +269,17 @@ function _assemblePerson(individual, ranAbout, ranSkills, ranExpirience, ranLang
 
     return person;
 }
+
+function _hideAll(){
+    document.getElementById("about-section").style.display='none';
+    document.getElementById("education-section").style.display='none';
+    document.getElementById("experience-section").style.display='none';
+    document.getElementById("skills-section").style.display='none';
+}
+
+function _showSection(section){
+    _hideAll();
+
+    document.getElementById(section).style.display = 'block';
+}
+
